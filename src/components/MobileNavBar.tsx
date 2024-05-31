@@ -30,7 +30,9 @@ function MobileNavBar() {
 
   return (
     <div className="fixed bg-primary-navy-blue w-screen py-4 top-0 h-16 flex justify-between md:px-8 lg:hidden items-center">
-      <Logo />
+      <span className="px-4">
+        <Logo />
+      </span>
       <header className="flex justify-end transition-all px-4 gap-4 items-center">
         <ShoppingCart
           style={{ color: 'hsl(var(--background-light-gray))' }}

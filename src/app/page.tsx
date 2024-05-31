@@ -2,6 +2,29 @@ import Button from '@/components/Button';
 import Image from 'next/image';
 import heroImg from '/public/hero-img.png';
 
+const categoryData = [
+  {
+    title: "Men's Clothing",
+    href: '/men-clothing',
+    image: '/1.png',
+  },
+  {
+    title: 'Jewellery',
+    href: '/jewelleries',
+    image: '/2.png',
+  },
+  {
+    title: 'Electronics',
+    href: '/electronics',
+    image: '/3.png',
+  },
+  {
+    title: "Women's Clothing",
+    href: '/women-clothing',
+    image: '/4.png',
+  },
+];
+
 export default function Home() {
   return (
     <main>
@@ -22,7 +45,20 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container mx-auto">HELLO</div>
+      <div className="container mx-auto px-4 py-10 grid grid-cols-2 grid-rows-2 gap-y-4 gap-x-3">
+        {categoryData.map((category) => (
+          <div key={category.title} className="relative rounded-md py-10">
+            HI
+            <Image
+              src={category.image}
+              alt={category.title}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-md"
+            />
+          </div>
+        ))}
+      </div>
     </main>
   );
 }
