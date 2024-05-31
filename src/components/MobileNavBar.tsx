@@ -29,7 +29,7 @@ function MobileNavBar() {
   }
 
   return (
-    <div className="fixed bg-primary-navy-blue w-screen py-4 top-0 h-16 flex justify-between md:px-8 lg:hidden items-center">
+    <div className="fixed bg-primary-navy-blue w-screen py-4 top-0 h-16 flex justify-between md:px-8 lg:hidden items-center z-30">
       <span className="px-4">
         <Logo />
       </span>
@@ -52,7 +52,7 @@ function MobileNavBar() {
 
       <nav
         className={clsx(
-          'text-sm absolute transition-all duration-500 flex flex-col h-screen w-screen  items-end top-0',
+          'text-sm absolute transition-all duration-500 flex flex-col h-screen w-screen z-30 items-end top-0',
           {
             'right-[-100%] opacity-0': !isOpen,
             'right-0 opacity-100': isOpen,
