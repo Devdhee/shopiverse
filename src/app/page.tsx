@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import Image from 'next/image';
 import heroImg from '/public/hero-img.png';
 import ProductCard from '@/components/ProductCard';
-import { getTenProducts } from '@/utils/apiCall';
+import { getProducts } from '@/utils/apiCall';
 import { Product } from '@/utils/interface';
 
 const categoryData = [
@@ -29,7 +29,10 @@ const categoryData = [
 ];
 
 export default async function Home() {
-  const products: Product[] = await getTenProducts();
+  const products: Product[] = await getProducts();
+
+  const bestRated = products.filter((product) => product.rating.rate >= 4.7);
+  const feauturedProducts = products.slice(0, 12);
 
   return (
     <main>
@@ -51,7 +54,23 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-10 grid grid-cols-2 grid-rows-2 gap-y-4 gap-x-3 md:gap-x-5 md:gap-y-6  md:py-16 lg:py-28 lg:gap-x-8 lg:gap-y-10 xl:px-24">
+      <div className="bg-background-light-gray px-1 py-16 md:py-16 lg:py-28 xl:px-24">
+        <div className="container mx-auto">
+          <h2 className="text-center text-xl font-semibold text-text-dark-gray">
+            Top Rated Products
+          </h2>
+          <h3 className="text-center mb-5 text-sm">
+            Highest Rated by Our Valued Customers
+          </h3>
+          <div className="px-1 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-x-2 sm:gap-x-3 gap-y-10 justify-items-center w-full">
+            {bestRated.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-16 grid grid-cols-2 grid-rows-2 gap-y-4 gap-x-3 md:gap-x-5 md:gap-y-6  md:py-16 lg:py-28 lg:gap-x-8 lg:gap-y-10 xl:px-24">
         {categoryData.map((category) => (
           <div
             key={category.title}
@@ -60,7 +79,7 @@ export default async function Home() {
             <Image
               src={category.image}
               alt={category.title}
-              quality={50}
+              quality={20}
               fill
               className="object-cover object-top rounded-2xl"
             />
@@ -71,10 +90,18 @@ export default async function Home() {
         ))}
       </div>
 
-      <div className="container mx-auto px-1 py-10 md:py-16 lg:py-28 xl:px-24 flex flex-wrap gap-x-2 gap-y-10 justify-center bg-background-light-gray">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      <div className="bg-background-light-gray px-1 py-16 md:py-16 lg:py-28 xl:px-24">
+        <h2 className="text-center text-xl font-semibold text-text-dark-gray">
+          New Arrivals
+        </h2>
+        <h3 className="text-center mb-5 text-sm">
+          Discover Recently Added Products
+        </h3>
+        <div className="container mx-auto flex flex-wrap gap-x-2 gap-y-10 justify-center ">
+          {feauturedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
     </main>
   );

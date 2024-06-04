@@ -6,7 +6,7 @@ const concertOne = Concert_One({ subsets: ['latin'], weight: ['400'] });
 function Logo() {
   return (
     <div
-      className={`${concertOne.className} px-2 text-pretty text-2xl text-secondary-warm-yellow flex items-end tracking-wider md:text-3xl lg:text-4xl`}
+      className={`${concertOne.className} px-2 text-left text-pretty text-2xl text-secondary-warm-yellow flex items-end tracking-wider md:text-3xl lg:text-4xl`}
     >
       ShopiVerse
       <span className="hidden lg:block">
