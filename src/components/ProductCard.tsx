@@ -13,7 +13,7 @@ function ProductCard({ product }: ProductProps) {
   return (
     <div className="flex flex-col w-full max-w-[350px] overflow-hidden shadow-sm">
       <div className="relative px-3 py-5 bg-background-white mb-3 rounded-lg h-[340px] flex items-center">
-        <img
+        <Image
           src={image}
           alt={title}
           width={150}

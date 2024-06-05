@@ -4,6 +4,7 @@ import './globals.css';
 import MobileNavBar from '@/components/MobileNavBar';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
+import Providers from '@/components/Providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,12 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} `}>
-        <MobileNavBar />
-        <NavBar />
-        {children}
-        <Footer />
-      </body>
+      <Providers>
+        <body className={`${inter.className} `}>
+          <MobileNavBar />
+          <NavBar />
+          {children}
+          <Footer />
+        </body>
+      </Providers>
     </html>
   );
 }

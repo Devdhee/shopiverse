@@ -5,8 +5,6 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'fakestoreapi.com',
-        port: '',
-        pathname: '/account123/**',
       },
     ],
   },

@@ -36,7 +36,7 @@ export default async function Home() {
 
   return (
     <main>
-      <div className="mt-16 py-20 bg-secondary-soft-gray lg:mt-0 lg:h-[80vh] lg:py-0">
+      <div className="mt-16 py-20 bg-secondary-soft-gray md:h-[80vh] lg:mt-0 lg:h-[80vh] lg:py-0">
         <div className="container mx-auto flex flex-col gap-2 justify-center md:flex-row items-center h-full px-4 md:px-6 lg:px-8">
           <div className="space-y-3 text-center md:flex-1 md:text-left md:space-y-5">
             <h1 className="text-4xl font-bold text-primary-navy-blue md:text-5xl text-center max-w-96 md:max-w-[500px] md:text-left lg:text-7xl lg:max-w-[650px]">
@@ -56,10 +56,10 @@ export default async function Home() {
 
       <div className="bg-background-light-gray px-1 py-16 md:py-16 lg:py-28 xl:px-24">
         <div className="container mx-auto">
-          <h2 className="text-center text-xl font-semibold text-text-dark-gray">
+          <h2 className="text-center text-xl sm:text-2xl font-semibold text-text-dark-gray md:text-3xl lg:text-4xl">
             Top Rated Products
           </h2>
-          <h3 className="text-center mb-5 text-sm">
+          <h3 className="text-center mb-5 text-sm md:text-lg lg:text-xl md:mb-8 lg:mb-10">
             Highest Rated by Our Valued Customers
           </h3>
           <div className="px-1 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-x-2 sm:gap-x-3 gap-y-10 justify-items-center w-full">
@@ -74,16 +74,17 @@ export default async function Home() {
         {categoryData.map((category) => (
           <div
             key={category.title}
-            className="relative rounded-2xl h-[120px] md:h-[170px] flex items-end py-3 px-2 md:px-6 md:py-5 lg:h-[300px] "
+            className="relative rounded-2xl h-[120px] sm:h-[170px] md:h-[200px] sm:p-6 flex items-end py-3 px-3 md:px-8 md:py-6 lg:h-[300px] cursor-pointer"
           >
             <Image
               src={category.image}
               alt={category.title}
               quality={20}
               fill
-              className="object-cover object-top rounded-2xl"
+              sizes="(max-width: 768px)"
+              className="object-cover object-top rounded-2xl w-auto h-auto"
             />
-            <p className="font-semibold text-sm relative z-10 text-background-white">
+            <p className="font-semibold text-sm relative z-10 text-background-white md:text-lg lg:text-xl">
               {category.title}
             </p>
           </div>
@@ -91,13 +92,13 @@ export default async function Home() {
       </div>
 
       <div className="bg-background-light-gray px-1 py-16 md:py-16 lg:py-28 xl:px-24">
-        <h2 className="text-center text-xl font-semibold text-text-dark-gray">
+        <h2 className="text-center text-xl sm:text-2xl font-semibold text-text-dark-gray md:text-3xl lg:text-4xl">
           New Arrivals
         </h2>
-        <h3 className="text-center mb-5 text-sm">
+        <h3 className="text-center mb-5 text-sm md:text-lg lg:text-xl md:mb-8 lg:mb-10">
           Discover Recently Added Products
         </h3>
-        <div className="container mx-auto flex flex-wrap gap-x-2 gap-y-10 justify-center ">
+        <div className="px-1 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-x-2 sm:gap-x-3 gap-y-10 justify-items-center w-full container">
           {feauturedProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
