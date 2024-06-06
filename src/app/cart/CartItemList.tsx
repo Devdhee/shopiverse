@@ -3,6 +3,7 @@
 import Button from '@/components/Button';
 import EmptyCart from '@/components/EmptyCart';
 import {
+  clearCart,
   declareItemQuantity,
   getCart,
   getTotalCartPrice,
@@ -41,8 +42,8 @@ function CartItemList() {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div>
-      <div className="md:hidden border-2 rounded-md px-2 py-3 mb-5">
+    <div className="flex flex-col md:flex-row-reverse justify-between md:gap-4 px-4 md:py-10">
+      <div className=" border-2 rounded-md px-2 py-3 mb-5 md:w-l/3 flex-1 md:py-5 md:px-4 md:h-72">
         <h2 className="font-semibold text-text-dark-gray mb-2">Cart Summary</h2>
         <div className="space-y-1">
           <p className="text-text-dark-gray text-sm font-semibold">
@@ -70,8 +71,15 @@ function CartItemList() {
             </span>
           </p>
         </div>
+
+        <div className="hidden md:flex gap-4 md:flex-wrap mt-8">
+          <Button variant="sm">CHECKOUT ({formatPrice(total)})</Button>
+          <Button variant="secondarySm" onClick={() => dispatch(clearCart())}>
+            CLEAR CART
+          </Button>
+        </div>
       </div>
-      <ul className="space-y-2 divide-y-2">
+      <ul className="space-y-2 divide-y-2 mb-8 ">
         {cart.map((cartItem) => (
           <li
             className="relative py-4 bg-white px-1 pt-12 overflow-hidden"
@@ -115,6 +123,12 @@ function CartItemList() {
           </li>
         ))}
       </ul>
+      <div className="flex gap-4 md:hidden">
+        <Button variant="sm">CHECKOUT ({formatPrice(total)})</Button>
+        <Button variant="secondarySm" onClick={() => dispatch(clearCart())}>
+          CLEAR CART
+        </Button>
+      </div>
     </div>
   );
 }
