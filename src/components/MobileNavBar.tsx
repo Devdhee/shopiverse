@@ -5,6 +5,7 @@ import { Menu, ShoppingCart, UserRound, X } from 'lucide-react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import Logo from './Logo';
+import ShoppingCartIcon from './ShoppingCart';
 
 const navList = [
   {
@@ -34,10 +35,9 @@ function MobileNavBar() {
         <Logo />
       </span>
       <header className="flex justify-end transition-all px-2 gap-4 items-center">
-        <ShoppingCart
-          style={{ color: 'hsl(var(--background-light-gray))' }}
-          size={18}
-        />
+        <Link href="/cart">
+          <ShoppingCartIcon />
+        </Link>
         <UserRound
           style={{ color: 'hsl(var(--background-light-gray))' }}
           size={18}

@@ -1,6 +1,7 @@
-import { ShoppingCart, UserRound } from 'lucide-react';
+import { UserRound } from 'lucide-react';
 import Link from 'next/link';
 import Logo from './Logo';
+import ShoppingCartIcon from './ShoppingCart';
 
 const navList = [
   {
@@ -32,10 +33,9 @@ function NavBar() {
           ))}
         </ul>
         <div className="flex gap-8">
-          <ShoppingCart
-            style={{ color: 'hsl(var(--background-light-gray))' }}
-            size={28}
-          />
+          <Link href="/cart">
+            <ShoppingCartIcon />
+          </Link>
           <UserRound
             style={{ color: 'hsl(var(--background-light-gray))' }}
             size={28}

@@ -5,6 +5,7 @@ import MobileNavBar from '@/components/MobileNavBar';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import Providers from '@/components/Providers';
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body className={`${inter.className} `}>
+          <Toaster position="bottom-center" richColors />
           <MobileNavBar />
           <NavBar />
           {children}

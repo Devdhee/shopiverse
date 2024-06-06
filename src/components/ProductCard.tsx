@@ -1,7 +1,8 @@
 import { Star } from 'lucide-react';
 import Image from 'next/image';
-import Button from './Button';
 import { Product } from '@/utils/interface';
+import ProductCardCTA from './ProductCardCTA';
+import formatPrice from '@/utils/helpers';
 
 type ProductProps = {
   product: Product;
@@ -27,19 +28,16 @@ function ProductCard({ product }: ProductProps) {
         </div>
       </div>
       <ul className="divide-y-2 divide-text-light-gray space-y-1 text-text-dark-gray">
-        <li className=" font-semibold truncate">{title}</li>
+        <li className="font-semibold truncate">{title}</li>
         <li>
           <p className="">{category}</p>
         </li>
         <li>
-          <p>{price}</p>
+          <p>{formatPrice(price)}</p>
         </li>
       </ul>
 
-      <div className="mt-5 flex flex-wrap gap-1">
-        <Button variant="secondarySm"> View</Button>
-        <Button variant="sm"> Add to Cart</Button>
-      </div>
+      <ProductCardCTA product={product} />
     </div>
   );
 }
