@@ -56,7 +56,6 @@ const cartSlice = createSlice({
         item.quantity++;
         item.totalPrice = item.price * item.quantity;
       }
-
       // saveCartItems('cartItems', state.cartItems);
     },
 
