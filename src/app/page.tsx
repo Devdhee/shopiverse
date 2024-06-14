@@ -62,7 +62,7 @@ export default async function Home() {
           <h3 className="text-center mb-5 text-sm md:text-lg lg:text-xl md:mb-8 lg:mb-10">
             Highest Rated by Our Valued Customers
           </h3>
-          <div className="px-1 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-x-2 sm:gap-x-3 gap-y-10 justify-items-center w-full">
+          <div className="px-1 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 sm:gap-x-3 gap-y-12 justify-items-center w-full">
             {bestRated.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -98,7 +98,7 @@ export default async function Home() {
         <h3 className="text-center mb-5 text-sm md:text-lg lg:text-xl md:mb-8 lg:mb-10">
           Discover Recently Added Products
         </h3>
-        <div className="px-1 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-x-2 sm:gap-x-3 gap-y-10 justify-items-center w-full container">
+        <div className="px-1 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 sm:gap-x-3 gap-y-12 lg:gap-y-24 justify-items-center w-full container">
           {feauturedProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

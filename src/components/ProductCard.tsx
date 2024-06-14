@@ -12,7 +12,7 @@ function ProductCard({ product }: ProductProps) {
   const { title, rating, price, category, image } = product;
 
   return (
-    <div className="flex flex-col w-full max-w-[350px] overflow-hidden shadow-sm">
+    <div className="flex flex-col w-full max-w-[270px] lg:max-w-[320px] overflow-hidden">
       <div className="relative px-3 py-5 bg-background-white mb-3 rounded-lg h-[340px] flex items-center">
         <Image
           src={image}
@@ -27,13 +27,13 @@ function ProductCard({ product }: ProductProps) {
           <span className="text-sm"> ({rating.count})</span>
         </div>
       </div>
-      <ul className="divide-y-2 divide-text-light-gray space-y-1 text-text-dark-gray">
+      <ul className="divide-y-2 divide-text-light-gray space-y-2 text-text-dark-gray px-1 mt-2 lg:mb-2">
         <li className="font-semibold truncate">{title}</li>
-        <li>
-          <p className="">{category}</p>
+        <li className="pt-2">
+          <span className="pb-8 text-sm md:text-[16px]">{category}</span>
         </li>
-        <li>
-          <p>{formatPrice(price)}</p>
+        <li className="pt-2">
+          <p className="font-semibold text-sm">{formatPrice(price)}</p>
         </li>
       </ul>
 

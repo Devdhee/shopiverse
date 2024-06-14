@@ -42,10 +42,10 @@ function CartItemList() {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div className="flex flex-col md:flex-row-reverse justify-between md:gap-4 px-4 md:py-10">
-      <div className=" border-2 rounded-md px-2 py-3 mb-5 md:w-l/3 flex-1 md:py-5 md:px-4 md:h-72">
+    <div className="flex flex-col md:flex-row-reverse justify-between lg:justify-around md:gap-8 px-4 md:py-10 lg:gap-20">
+      <div className="border-2 rounded-md px-2 py-3 mb-5 md:min-w-[270px] lg:max-w-[400px] flex-1 md:py-5 md:px-4 md:h-72 ">
         <h2 className="font-semibold text-text-dark-gray mb-2">Cart Summary</h2>
-        <div className="space-y-1">
+        <div className="space-y-1 md:space-y-2">
           <p className="text-text-dark-gray text-sm font-semibold">
             Items:{' '}
             <span className="text-text-dark-gray text-sm font-semibold">
@@ -79,13 +79,13 @@ function CartItemList() {
           </Button>
         </div>
       </div>
-      <ul className="space-y-2 divide-y-2 mb-8 ">
+      <ul className="space-y-2 divide-y-2 mb-8 lg:flex-1 lg:max-w-[700px]">
         {cart.map((cartItem) => (
           <li
             className="relative py-4 bg-white px-1 pt-12 overflow-hidden"
             key={cartItem.id}
           >
-            <div className="flex gap-4">
+            <div className="flex gap-4 lg:gap-10">
               <div className="relative flex items-center w-1/4">
                 <Image
                   src={cartItem.image}
@@ -95,21 +95,21 @@ function CartItemList() {
                   className="w-48"
                 />
               </div>
-              <div className="w-3/4 my-auto space-y-2">
+              <div className="w-3/4 my-auto space-y-2 lg:space-y-4 lg:w-1/2">
                 <p className="max-w-[250px] truncate font-semibold">
                   {cartItem.title}
                 </p>
                 <p>{formatPrice(cartItem.totalPrice)}</p>
                 <span className="flex gap-1 items-center">
                   <Button
-                    variant="round"
+                    variant="icon"
                     onClick={() => handleDecreaseQuantity(cartItem.id)}
                   >
                     -
                   </Button>
                   {cartItem.quantity}
                   <Button
-                    variant="round"
+                    variant="icon"
                     onClick={() => handleIncreaseQuantity(cartItem.id)}
                   >
                     +
@@ -123,7 +123,7 @@ function CartItemList() {
           </li>
         ))}
       </ul>
-      <div className="flex gap-4 md:hidden">
+      <div className="flex gap-4 flex-wrap md:hidden">
         <Button variant="sm">CHECKOUT ({formatPrice(total)})</Button>
         <Button variant="secondarySm" onClick={() => dispatch(clearCart())}>
           CLEAR CART

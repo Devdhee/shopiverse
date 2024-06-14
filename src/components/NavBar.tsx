@@ -5,15 +5,15 @@ import ShoppingCartIcon from './ShoppingCart';
 
 const navList = [
   {
-    title: 'Home',
-    href: '/',
-  },
-  {
     title: 'Shop',
     href: '/shop',
   },
   {
     title: 'Support',
+    href: '#',
+  },
+  {
+    title: 'Contact',
     href: '#',
   },
 ];
@@ -26,7 +26,7 @@ function NavBar() {
         <ul className="flex gap-10">
           {navList.map((item) => (
             <Link href={item.href} key={item.title}>
-              <li className="text-background-light-gray text-lg">
+              <li className="text-background-light-gray text-lg hover:text-secondary-warm-yellow">
                 {item.title}
               </li>
             </Link>

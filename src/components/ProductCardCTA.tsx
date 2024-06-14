@@ -40,7 +40,7 @@ function ProductCardCTA({ product }: ProductCardCtaProps) {
   }
 
   return (
-    <div className="mt-5 flex flex-wrap gap-1">
+    <div className="mt-5 flex flex-wrap gap-1 sm:gap-2 lg:gap-4">
       <Button variant="secondarySm"> View</Button>
       {!isInCart ? (
         <Button variant="sm" onClick={handleAddToCart}>

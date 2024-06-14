@@ -54,11 +54,13 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="bg-primary-navy-blue px-4 py-5 sm:py-12 md:py-16 lg:py-28 xl:px-24">
+    <div className="bg-primary-navy-blue px-4 py-5 sm:py-8 md:pb-7 md:pt-10 lg:pt-28 xl:px-24">
       <footer className="container space-y-3 mx-auto">
-        <div className="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-16 sm:gap-y-16">
+        <div className="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-16 sm:gap-y-16 md:grid-cols-4 md:gap-x-4 md:grid-rows-1 md:mb-6 lg:mb-10">
           <div className="text-background-white text-sm ">
-            <h4 className=" text-sm font-semibold mb-4">Customer Service</h4>
+            <h4 className=" text-sm font-semibold mb-2 lg:mb-3">
+              Customer Service
+            </h4>
             <div className="mb-3">
               <h5 className="text-sm text-secondary-soft-gray/90 mb-1">
                 Phone:
@@ -75,11 +77,11 @@ function Footer() {
           </div>
 
           <div className="text-background-white text-sm">
-            <h4 className=" text-sm font-semibold mb-4">Shop</h4>
+            <h4 className=" text-sm font-semibold mb-2 lg:mb-3">Shop</h4>
             <ul className="">
               {shop.map((listItem) => (
                 <Link href={listItem.href} key={listItem.title}>
-                  <li className="text-secondary-soft-gray/90 hover:text-secondary-soft-gray mb-1">
+                  <li className="text-secondary-soft-gray/90 hover:text-secondary-soft-gray mb-1 lg:mb-3">
                     {listItem.title}
                   </li>
                 </Link>
@@ -88,12 +90,12 @@ function Footer() {
           </div>
 
           <div className="text-background-white text-sm">
-            <h4 className=" text-sm font-semibold mb-4">About</h4>
+            <h4 className=" text-sm font-semibold mb-2 lg:mb-3">About</h4>
             <ul className="">
               {about.map((listItem) => (
                 <li
                   key={listItem.title}
-                  className="text-secondary-soft-gray/90 hover:text-secondary-soft-gray mb-1"
+                  className="text-secondary-soft-gray/90 hover:text-secondary-soft-gray mb-1 lg:mb-3"
                 >
                   {listItem.title}
                 </li>
@@ -102,12 +104,12 @@ function Footer() {
           </div>
 
           <div className="text-background-white text-sm">
-            <h4 className=" text-sm font-semibold mb-4">Terms</h4>
+            <h4 className=" text-sm font-semibold mb-2 lg:mb-3">Terms</h4>
             <ul className="">
               {terms.map((listItem) => (
                 <li
                   key={listItem.title}
-                  className="text-secondary-soft-gray/90 hover:text-secondary-soft-gray mb-1"
+                  className="text-secondary-soft-gray/90 hover:text-secondary-soft-gray mb-1 lg:mb-3"
                 >
                   {listItem.title}
                 </li>
