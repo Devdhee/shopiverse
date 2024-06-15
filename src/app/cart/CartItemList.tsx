@@ -13,6 +13,7 @@ import {
 } from '@/features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import formatPrice from '@/utils/helpers';
+import { Product } from '@/utils/interface';
 import { X } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';

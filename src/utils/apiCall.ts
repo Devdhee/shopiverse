@@ -6,8 +6,8 @@ export async function getProducts() {
   return data;
 }
 
-export async function getTenProducts() {
-  const res = await fetch(`${API_URL}/products?limit=10`);
+export async function getProduct(productId: string) {
+  const res = await fetch(`${API_URL}/products/${productId}`);
   const data = res.json();
   return data;
 }

@@ -41,7 +41,10 @@ function ProductCardCTA({ product }: ProductCardCtaProps) {
 
   return (
     <div className="mt-5 flex flex-wrap gap-1 sm:gap-2 lg:gap-4">
-      <Button variant="secondarySm"> View</Button>
+      <Button variant="secondarySm" href={`/products/${id}`}>
+        {' '}
+        View
+      </Button>
       {!isInCart ? (
         <Button variant="sm" onClick={handleAddToCart}>
           Add to Cart

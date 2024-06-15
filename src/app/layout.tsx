@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={`${inter.className} `}>
+        <body className={`${inter.className} !scroll-smooth`}>
           <Toaster position="bottom-center" richColors />
           <MobileNavBar />
           <NavBar />
