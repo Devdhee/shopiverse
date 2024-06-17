@@ -6,11 +6,13 @@ import {
   clearCart,
   declareItemQuantity,
   getCart,
+  getCurrentQuantityById,
   getTotalCartPrice,
   getTotalCartQuantity,
   increaseItemQuantity,
   removeFromCart,
 } from '@/features/cart/cartSlice';
+import { clearQuantity } from '@/features/cart/productSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import formatPrice from '@/utils/helpers';
 import { Product } from '@/utils/interface';
@@ -29,6 +31,8 @@ function CartItemList() {
 
   function handleRemoveFromCart(productId: number) {
     dispatch(removeFromCart(productId));
+    dispatch(clearQuantity(productId));
+
     toast.success('Product removed succesfully');
   }
 

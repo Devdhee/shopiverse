@@ -9,17 +9,25 @@ import {
   removeFromCart,
 } from '@/features/cart/cartSlice';
 import { toast } from 'sonner';
-import { clearQuantity } from '@/features/cart/productSlice';
+import { useState } from 'react';
+import {
+  clearQuantity,
+  decreaseProductQuantity,
+  getProductQuantity,
+  increaseProductQuantity,
+} from '@/features/cart/productSlice';
 
 type ProductCardCtaProps = {
   product: Product;
 };
 
-function ProductCardCTA({ product }: ProductCardCtaProps) {
+function ProductPageCTA({ product }: ProductCardCtaProps) {
   const { id, image, title, price } = product;
   const currentQuantity = useAppSelector(getCurrentQuantityById(id));
   const isInCart = currentQuantity > 0;
   const dispatch = useAppDispatch();
+  const quantity = useAppSelector(getProductQuantity(id));
+  console.log(quantity);
 
   function handleAddToCart() {
     const newCartItem = {
@@ -27,8 +35,8 @@ function ProductCardCTA({ product }: ProductCardCtaProps) {
       title,
       image,
       price,
-      quantity: 1,
-      totalPrice: price * 1,
+      quantity,
+      totalPrice: price * quantity,
     };
 
     dispatch(addToCart(newCartItem));
@@ -41,12 +49,26 @@ function ProductCardCTA({ product }: ProductCardCtaProps) {
     toast.success('Product removed succesfully');
   }
 
+  function increaseQuantity() {
+    dispatch(increaseProductQuantity(id));
+  }
+
+  function decreaseQuantity() {
+    dispatch(decreaseProductQuantity(id));
+  }
+
   return (
-    <div className="mt-5 flex flex-wrap gap-1 sm:gap-2 lg:gap-4">
-      <Button variant="secondarySm" href={`/products/${id}`}>
-        {' '}
-        View
-      </Button>
+    <div className="mt-5 flex flex-wrap gap-4 sm:gap-6 md:gap-10 lg:gap-12">
+      <span className="flex gap-1 items-center sm:gap-2 md:gap-3 lg:gap-4">
+        <Button variant="icon" onClick={() => decreaseQuantity()}>
+          -
+        </Button>
+        {quantity}
+        <Button variant="icon" onClick={() => increaseQuantity()}>
+          +
+        </Button>
+      </span>
+
       {!isInCart ? (
         <Button variant="sm" onClick={handleAddToCart}>
           Add to Cart
@@ -60,4 +82,4 @@ function ProductCardCTA({ product }: ProductCardCtaProps) {
   );
 }
 
-export default ProductCardCTA;
+export default ProductPageCTA;
