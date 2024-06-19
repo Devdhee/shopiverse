@@ -78,7 +78,9 @@ function CartItemList() {
         </div>
 
         <div className="hidden md:flex gap-4 md:flex-wrap mt-8">
-          <Button variant="sm">CHECKOUT ({formatPrice(total)})</Button>
+          <Button variant="sm" href="/checkout">
+            CHECKOUT ({formatPrice(total)})
+          </Button>
           <Button variant="secondarySm" onClick={() => dispatch(clearCart())}>
             CLEAR CART
           </Button>
@@ -129,7 +131,9 @@ function CartItemList() {
         ))}
       </ul>
       <div className="flex gap-4 flex-wrap md:hidden">
-        <Button variant="sm">CHECKOUT ({formatPrice(total)})</Button>
+        <Button variant="sm" href="/checkout">
+          CHECKOUT ({formatPrice(total)})
+        </Button>
         <Button variant="secondarySm" onClick={() => dispatch(clearCart())}>
           CLEAR CART
         </Button>

@@ -60,11 +60,19 @@ function ProductPageCTA({ product }: ProductCardCtaProps) {
   return (
     <div className="mt-5 flex flex-wrap gap-4 sm:gap-6 md:gap-10 lg:gap-12">
       <span className="flex gap-1 items-center sm:gap-2 md:gap-3 lg:gap-4">
-        <Button variant="icon" onClick={() => decreaseQuantity()}>
+        <Button
+          variant="icon"
+          onClick={() => decreaseQuantity()}
+          disabled={isInCart}
+        >
           -
         </Button>
         {quantity}
-        <Button variant="icon" onClick={() => increaseQuantity()}>
+        <Button
+          variant="icon"
+          onClick={() => increaseQuantity()}
+          disabled={isInCart}
+        >
           +
         </Button>
       </span>

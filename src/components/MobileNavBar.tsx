@@ -6,6 +6,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import Logo from './Logo';
 import ShoppingCartIcon from './ShoppingCart';
+import { useSession } from 'next-auth/react';
 
 const navList = [
   {
@@ -23,6 +24,8 @@ const navList = [
 ];
 
 function MobileNavBar() {
+  const { data: session } = useSession();
+
   const [isOpen, setIsOpen] = useState(false);
 
   function handleHamburgerMenu() {
@@ -38,11 +41,19 @@ function MobileNavBar() {
         <Link href="/cart">
           <ShoppingCartIcon />
         </Link>
-        <UserRound
-          style={{ color: 'hsl(var(--background-light-gray))' }}
-          size={18}
-        />
-
+        {session?.user?.image ? (
+          <img
+            className="size-6 rounded-full border border-stone-600"
+            src={session.user.image}
+            alt={`Avatar image for ${session.user.name}`}
+            referrerPolicy="no-referrer"
+          />
+        ) : (
+          <UserRound
+            style={{ color: 'hsl(var(--background-light-gray))' }}
+            size={18}
+          />
+        )}
         <Menu
           style={{ color: 'hsl(var(--background-light-gray))' }}
           size={30}
@@ -71,7 +82,11 @@ function MobileNavBar() {
         </header>
         <ul className="divide-y bg-background-white divide-text-medium-gray flex flex-col gap-1 w-full py-5 px-4 h-screen md:px-8">
           {navList.map((navListItem) => (
-            <Link href={navListItem.href} key={navListItem.title}>
+            <Link
+              href={navListItem.href}
+              key={navListItem.title}
+              onClick={handleHamburgerMenu}
+            >
               <li className=" space-y-5 text-primary-navy-blue text-lg py-4">
                 {navListItem.title}
               </li>

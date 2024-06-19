@@ -4,16 +4,17 @@ import heroImg from '/public/hero-img.png';
 import ProductCard from '@/components/ProductCard';
 import { getProducts } from '@/utils/apiCall';
 import { Product } from '@/utils/interface';
+import Link from 'next/link';
 
 const categoryData = [
   {
     title: "Men's Clothing",
-    href: '/men-clothing',
+    href: "/men's%20clothing",
     image: '/1.png',
   },
   {
     title: 'Jewellery',
-    href: '/jewelleries',
+    href: '/jewelery',
     image: '/2.png',
   },
   {
@@ -23,7 +24,7 @@ const categoryData = [
   },
   {
     title: "Women's Clothing",
-    href: '/women-clothing',
+    href: "/women's%20clothing",
     image: '/4.png',
   },
 ];
@@ -74,22 +75,21 @@ export default async function Home() {
 
       <div className="container mx-auto px-4 py-16 grid grid-cols-2 grid-rows-2 gap-y-4 gap-x-3 md:gap-x-5 md:gap-y-6  md:py-16 lg:py-28 lg:gap-x-8 lg:gap-y-10 xl:px-24">
         {categoryData.map((category) => (
-          <div
-            key={category.title}
-            className="relative rounded-2xl h-[120px] sm:h-[170px] md:h-[200px] sm:p-6 flex items-end py-3 px-3 md:px-8 md:py-6 lg:h-[300px] cursor-pointer"
-          >
-            <Image
-              src={category.image}
-              alt={category.title}
-              quality={20}
-              fill
-              sizes="(max-width: 768px)"
-              className="object-cover object-top rounded-2xl w-auto h-auto"
-            />
-            <p className="font-semibold text-sm relative z-10 text-background-white md:text-lg lg:text-xl">
-              {category.title}
-            </p>
-          </div>
+          <Link href={`/categories${category.href}`} key={category.title}>
+            <div className="relative rounded-2xl h-[120px] sm:h-[170px] md:h-[200px] sm:p-6 flex items-end py-3 px-3 md:px-8 md:py-6 lg:h-[300px] cursor-pointer">
+              <Image
+                src={category.image}
+                alt={category.title}
+                quality={20}
+                fill
+                sizes="(max-width: 768px)"
+                className="object-cover object-top rounded-2xl w-auto h-auto"
+              />
+              <p className="font-semibold text-sm relative z-10 text-background-white md:text-lg lg:text-xl">
+                {category.title}
+              </p>
+            </div>
+          </Link>
         ))}
       </div>
 

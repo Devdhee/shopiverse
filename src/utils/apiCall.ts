@@ -11,3 +11,9 @@ export async function getProduct(productId: string) {
   const data = res.json();
   return data;
 }
+
+export async function getProductsInCategory(category: string) {
+  const res = await fetch(`${API_URL}/products/category/${category}`);
+  const data = res.json();
+  return data;
+}

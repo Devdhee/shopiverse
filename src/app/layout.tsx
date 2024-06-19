@@ -6,6 +6,7 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import Providers from '@/components/Providers';
 import { Toaster } from 'sonner';
+import { SessionProvider } from 'next-auth/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,13 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={`${inter.className} !scroll-smooth`}>
-          <Toaster position="bottom-center" richColors />
-          <MobileNavBar />
-          <NavBar />
-          {children}
-          <Footer />
-        </body>
+        <SessionProvider>
+          <body className={`${inter.className} !scroll-smooth`}>
+            <Toaster position="bottom-center" richColors />
+            <MobileNavBar />
+            <NavBar />
+            {children}
+            <Footer />
+          </body>
+        </SessionProvider>
       </Providers>
     </html>
   );
