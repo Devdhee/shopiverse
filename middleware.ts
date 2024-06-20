@@ -1,7 +1,13 @@
-import { auth } from '@/utils/auth';
+// import { auth } from '@/utils/auth';
 
-export const middleware = auth;
+import { NextRequest } from 'next/server';
 
-export const config = {
-  matcher: ['/checkout'],
-};
+// export const middleware = auth;
+
+// export const config = {
+//   matcher: ['/checkout'],
+// };
+
+export function middleware(request: NextRequest) {
+  console.log(request);
+}
