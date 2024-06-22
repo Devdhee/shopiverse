@@ -7,6 +7,8 @@ import clsx from 'clsx';
 import Logo from './Logo';
 import ShoppingCartIcon from './ShoppingCart';
 import { useSession } from 'next-auth/react';
+import { signOutAction } from '@/utils/actions';
+import Button from './Button';
 
 const navList = [
   {
@@ -92,6 +94,11 @@ function MobileNavBar() {
               </li>
             </Link>
           ))}
+          <form action={signOutAction} className="pt-10">
+            <span onClick={handleHamburgerMenu}>
+              <Button variant="primary">Logout</Button>
+            </span>
+          </form>
         </ul>
       </nav>
     </div>
