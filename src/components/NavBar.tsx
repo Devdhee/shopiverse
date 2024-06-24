@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Logo from './Logo';
 import ShoppingCartIcon from './ShoppingCart';
 import { auth } from '@/utils/auth';
+import SignOutButton from './SignOutButton';
 
 const navList = [
   {
@@ -52,6 +53,8 @@ async function NavBar() {
               size={28}
             />
           )}
+
+          {session?.user && <SignOutButton />}
         </div>
       </div>
     </nav>

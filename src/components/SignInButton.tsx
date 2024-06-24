@@ -4,7 +4,7 @@ import Image from 'next/image';
 function SignInButton() {
   return (
     <form action={signInAction}>
-      <button className="flex items-center gap-2 px-3 py-2 rounded-lg font-medium border md:px-5">
+      <button className="flex items-center gap-2 px-3 py-2 rounded-lg font-medium border md:px-5 md:py-3">
         <Image
           src="https://authjs.dev/img/providers/google.svg"
           alt="Google logo"

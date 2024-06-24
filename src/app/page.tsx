@@ -5,6 +5,7 @@ import ProductCard from '@/components/ProductCard';
 import { getProducts } from '@/utils/apiCall';
 import { Product } from '@/utils/interface';
 import Link from 'next/link';
+import { auth } from '@/utils/auth';
 
 const categoryData = [
   {
@@ -34,6 +35,9 @@ export default async function Home() {
 
   const bestRated = products.filter((product) => product.rating.rate >= 4.7);
   const feauturedProducts = products.slice(0, 12);
+  const session = await auth();
+
+  console.log(session);
 
   return (
     <main className="scroll-smooth">

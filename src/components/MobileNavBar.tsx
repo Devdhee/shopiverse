@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Menu, ShoppingCart, UserRound, X } from 'lucide-react';
+import { Menu, UserRound, X } from 'lucide-react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import Logo from './Logo';
 import ShoppingCartIcon from './ShoppingCart';
 import { useSession } from 'next-auth/react';
-import { signOutAction } from '@/utils/actions';
-import Button from './Button';
+
+import SignOutButton from './SignOutButton';
 
 const navList = [
   {
@@ -65,10 +65,10 @@ function MobileNavBar() {
 
       <nav
         className={clsx(
-          'text-sm absolute transition-all duration-500 flex flex-col h-screen w-screen z-30 items-end top-0',
+          'text-sm absolute transition-all duration-500 flex flex-col h-screen w-screen md:w-[70vw] z-30 items-end top-0',
           {
-            'right-[-100%] opacity-0': !isOpen,
-            'right-0 opacity-100': isOpen,
+            'right-[-100%] md:left-[-100%] opacity-0': !isOpen,
+            'right-0 md:left-0 opacity-100': isOpen,
           }
         )}
       >
@@ -94,11 +94,11 @@ function MobileNavBar() {
               </li>
             </Link>
           ))}
-          <form action={signOutAction} className="pt-10">
-            <span onClick={handleHamburgerMenu}>
-              <Button variant="primary">Logout</Button>
-            </span>
-          </form>
+          {session?.user && (
+            <div className="pt-12" onClick={handleHamburgerMenu}>
+              <SignOutButton />
+            </div>
+          )}
         </ul>
       </nav>
     </div>
