@@ -5,7 +5,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import Button from './Button';
 import { useSession } from 'next-auth/react';
-import { toast } from 'sonner';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { getUserData, setUserData } from '@/features/user/userSlice';
 
 const checkoutSchema = z.object({
   fullName: z.string(),
@@ -20,9 +21,18 @@ const checkoutSchema = z.object({
 type CheckoutSchemaType = z.infer<typeof checkoutSchema>;
 
 function CheckoutForm() {
+  const dispatch = useAppDispatch();
+
   const { data: session } = useSession();
   const fullName = session?.user?.name ?? '';
   const email = session?.user?.email ?? '';
+
+  const {
+    address,
+    mobileNumber,
+    fullName: name,
+    email: mail,
+  } = useAppSelector(getUserData);
 
   const {
     register,
@@ -31,29 +41,24 @@ function CheckoutForm() {
   } = useForm<CheckoutSchemaType>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
-      fullName: fullName,
-      email: email,
-      mobileNumber: '',
-      address: '',
+      fullName: fullName || name,
+      email: email || mail,
+      mobileNumber: mobileNumber || '',
+      address: address || '',
     },
   });
 
   const onSubmit: SubmitHandler<CheckoutSchemaType> = (data) => {
-    toast('Order Confirmed', {
-      description: `Hello ${
-        fullName.split(' ')[0]
-      }. Your item(s) will be delivered to ${data.address}. 
-      
-      Thanks!`,
-    });
+    const newUserData = data;
+    dispatch(setUserData(newUserData));
   };
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex gap-5 flex-col py-7 px-2 sm:gap-7 md:gap-8 rounded-xl bg-white"
+      className="flex gap-5 flex-col sm:gap-7 md:gap-8 rounded-xl bg-white px-4 sm:px-6 sm:py-10 md:px-12 md:py-16 py-7 lg:px-6"
     >
-      <h1 className="font-semibold text-lg tracking-wide">
+      <h1 className="font-semibold text-lg tracking-wide text-text-medium-gray border-primary-navy-blue/60 pb-2 border-b-2">
         Shipping information
       </h1>
       <div className="flex flex-col gap-1 sm:gap-2 md:gap-4">
@@ -132,7 +137,7 @@ function CheckoutForm() {
         )}
       </div>
 
-      <Button variant="primary">Confirm Order</Button>
+      <Button variant="primary">Continue</Button>
     </form>
   );
 }

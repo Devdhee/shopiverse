@@ -6,7 +6,6 @@ import {
   clearCart,
   declareItemQuantity,
   getCart,
-  getCurrentQuantityById,
   getTotalCartPrice,
   getTotalCartQuantity,
   increaseItemQuantity,
@@ -15,8 +14,7 @@ import {
 import { clearQuantity } from '@/features/cart/productSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import formatPrice from '@/utils/helpers';
-import { Product } from '@/utils/interface';
-import { X } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';
 
@@ -47,30 +45,30 @@ function CartItemList() {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div className="flex flex-col md:flex-row-reverse justify-between lg:justify-around md:gap-8 px-4 md:py-10 lg:gap-20">
-      <div className="border-2 rounded-md px-2 py-3 mb-5 md:min-w-[270px] lg:max-w-[400px] flex-1 md:py-5 md:px-4 md:h-72 ">
+    <div className="flex py-10 flex-col md:flex-row-reverse justify-between md:gap-8 px-4 md:py-10 lg:gap-10 xl:w-fit xl:mx-auto">
+      <div className="border-2 rounded-xl px-4 py-6 mb-5 md:min-w-[270px] lg:max-w-[400px] flex-1 md:py-8 md:px-6 md:h-fit bg-white xl:max-w-[500px]">
         <h2 className="font-semibold text-text-dark-gray mb-2">Cart Summary</h2>
-        <div className="space-y-1 md:space-y-2">
-          <p className="text-text-dark-gray text-sm font-semibold">
-            Items:{' '}
+        <div className="space-y-2 md:space-y-3">
+          <p className="text-text-dark-gray text-sm font-semibold flex justify-between">
+            Items
             <span className="text-text-dark-gray text-sm font-semibold">
               {totalCartQuantity}
             </span>
           </p>
-          <p className="text-text-dark-gray text-sm font-semibold">
-            Subtotal:{' '}
+          <p className="text-text-dark-gray text-sm font-semibold flex justify-between">
+            Subtotal
             <span className="text-text-dark-gray text-sm font-semibold">
               {formatPrice(totalCartPrice)}
             </span>
           </p>
-          <p className="text-text-dark-gray text-sm font-semibold">
-            VAT (11%):{' '}
+          <p className="text-text-dark-gray text-sm font-semibold flex justify-between">
+            VAT (11%)
             <span className="text-text-dark-gray text-sm font-semibold">
               {formatPrice(salesTax)}
             </span>
           </p>
-          <p className="text-text-dark-gray text-sm font-bold">
-            Total:{' '}
+          <p className="text-text-dark-gray text-sm font-bold flex justify-between">
+            Total
             <span className="text-text-dark-gray text-sm font-semibold">
               {formatPrice(total)}
             </span>
@@ -86,10 +84,10 @@ function CartItemList() {
           </Button>
         </div>
       </div>
-      <ul className="space-y-2 divide-y-2 mb-8 lg:flex-1 lg:max-w-[700px]">
+      <ul className="space-y-4 mb-8 lg:flex-1 lg:max-w-[700px] xl:w-[900px]">
         {cart.map((cartItem) => (
           <li
-            className="relative py-4 bg-white px-1 pt-12 overflow-hidden"
+            className="relative bg-white pt-12 overflow-hidden rounded-xl px-4 py-6 xl:w-full xl:min-h-64 xl:flex"
             key={cartItem.id}
           >
             <div className="flex gap-4 lg:gap-10">
@@ -124,8 +122,11 @@ function CartItemList() {
                 </span>
               </div>
             </div>
-            <span className="absolute top-3 right-1 cursor-pointer">
-              <X onClick={() => handleRemoveFromCart(cartItem.id)} />
+            <span className="absolute top-4 right-2 cursor-pointer">
+              <Trash2
+                onClick={() => handleRemoveFromCart(cartItem.id)}
+                style={{ color: '#AA0000', cursor: 'pointer' }}
+              />
             </span>
           </li>
         ))}

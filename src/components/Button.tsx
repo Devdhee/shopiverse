@@ -22,7 +22,7 @@ function Button({
     'inline-block rounded-lg bg-secondary-warm-yellow font-bold tracking-wide text-background-white transition-colors duration-300 hover:bg-secondary-warm-yellow/90  focus:outline-none  disabled:cursor-not-allowed border border-secondary-warm-yellow';
 
   const styles = {
-    primary: base + ' px-3.5 py-2.5 md:px-6 md:py-3.5 ',
+    primary: base + ' px-3.5 py-2.5 md:px-6 md:py-3.5 text-center',
     sm: base + ' px-4 py-2 md:px-5 md:py-2.5 text-xs',
     icon: 'inline-block bg-secondary-warm-yellow font-bold tracking-wide text-background-white transition-colors duration-300 hover:bg-secondary-warm-yellow/90  focus:outline-none disabled:cursor-not-allowed border border-secondary-warm-yellow px-2.5 py-1 md:px-3.5 md:py-2 text-sm rounded-lg',
     secondary:

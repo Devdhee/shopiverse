@@ -1,22 +1,24 @@
 import NextAuth from 'next-auth';
+import type { NextAuthConfig } from 'next-auth';
 import google from 'next-auth/providers/google';
 
 const authConfig = {
+  pages: {
+    signIn: '/login',
+  },
+  callbacks: {
+    authorized({ auth, request }) {
+      return !!auth?.user;
+    },
+  },
   providers: [
     google({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
   ],
-  callbacks: {
-    authorized({ auth, request }) {
-      return !!auth?.user;
-    },
-  },
-  pages: {
-    signIn: '/login',
-  },
-};
+  trustHost: true,
+} satisfies NextAuthConfig;
 
 export const {
   auth,

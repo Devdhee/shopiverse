@@ -43,17 +43,12 @@ function MobileNavBar() {
         <Link href="/cart">
           <ShoppingCartIcon />
         </Link>
-        {session?.user?.image ? (
+        {session?.user?.image && (
           <img
             className="size-6 rounded-full border border-stone-600"
             src={session.user.image}
             alt={`Avatar image for ${session.user.name}`}
             referrerPolicy="no-referrer"
-          />
-        ) : (
-          <UserRound
-            style={{ color: 'hsl(var(--background-light-gray))' }}
-            size={18}
           />
         )}
         <Menu

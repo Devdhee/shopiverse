@@ -2,7 +2,7 @@ import { RootState } from '@/store/store';
 import { saveCartItems } from '@/utils/localStorage';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface CartItemData {
+export interface CartItemData {
   id: number;
   title: string;
   price: number;

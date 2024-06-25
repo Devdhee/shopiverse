@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Primary Colors */
   --primary-navy-blue: 210 52 17;
