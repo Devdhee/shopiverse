@@ -1,5 +1,5 @@
 import { RootState } from '@/store/store';
-import { saveCartItems } from '@/utils/localStorage';
+import { loadCartItems, saveCartItems } from '@/utils/localStorage';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface CartItemData {
@@ -23,14 +23,19 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    setCartItems: (state, action: PayloadAction<CartItemData[]>) => {
+      state.cartItems = action.payload;
+    },
     addToCart: (state, action: PayloadAction<CartItemData>) => {
       state.cartItems.push(action.payload);
+      saveCartItems('cartItems', state.cartItems);
     },
 
     removeFromCart: (state, action: PayloadAction<number>) => {
       state.cartItems = state.cartItems.filter(
         (item) => item.id !== action.payload
       );
+      saveCartItems('cartItems', state.cartItems);
     },
 
     increaseItemQuantity: (state, action: PayloadAction<number>) => {
@@ -39,6 +44,7 @@ const cartSlice = createSlice({
         item.quantity++;
         item.totalPrice = item.price * item.quantity;
       }
+      saveCartItems('cartItems', state.cartItems);
     },
 
     declareItemQuantity: (state, action: PayloadAction<number>) => {
@@ -50,6 +56,7 @@ const cartSlice = createSlice({
         if (item.quantity === 0)
           cartSlice.caseReducers.removeFromCart(state, action);
       }
+      saveCartItems('cartItems', state.cartItems);
     },
 
     clearCart: (state) => {
@@ -60,6 +67,7 @@ const cartSlice = createSlice({
 });
 
 export const {
+  setCartItems,
   addToCart,
   removeFromCart,
   increaseItemQuantity,

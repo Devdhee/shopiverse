@@ -5,7 +5,7 @@ import { useAppSelector } from '@/store/hooks';
 import { ShoppingCart } from 'lucide-react';
 
 function ShoppingCartIcon() {
-  const x = useAppSelector(getTotalCartQuantity);
+  const cartItemsQuantity = useAppSelector(getTotalCartQuantity);
 
   return (
     <span className="relative">
@@ -19,9 +19,9 @@ function ShoppingCartIcon() {
         size={18}
         className="lg:hidden"
       />
-      {x > 0 && (
+      {cartItemsQuantity > 0 && (
         <span className="absolute -top-2 text-sm bg-secondary-warm-yellow px-1 rounded-full -right-2 text-white">
-          {x}
+          {cartItemsQuantity}
         </span>
       )}
     </span>

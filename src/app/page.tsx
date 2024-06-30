@@ -37,8 +37,6 @@ export default async function Home() {
   const feauturedProducts = products.slice(0, 12);
   const session = await auth();
 
-  console.log(session);
-
   return (
     <main className="scroll-smooth">
       <section className="mt-16 py-20 bg-secondary-soft-gray md:h-[80vh] lg:mt-0 lg:h-[80vh] lg:py-0">

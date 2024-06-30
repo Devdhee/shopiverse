@@ -94,13 +94,15 @@ function CartOverview() {
             </span>
           </p>
 
-          <button
-            className="inline-block rounded-lg bg-secondary-warm-yellow font-bold tracking-wide text-background-white transition-colors duration-300 hover:bg-secondary-warm-yellow/90  focus:outline-none  disabled:cursor-not-allowed border border-secondary-warm-yellow px-3.5 py-2.5 md:px-6 md:py-3.5 text-center"
-            disabled={inCompleteForm}
-            onClick={() => handlePlaceOrder()}
-          >
-            PLACE ORDER
-          </button>
+          {!inCompleteForm && (
+            <button
+              className="inline-block rounded-lg bg-secondary-warm-yellow font-bold tracking-wide text-background-white transition-colors duration-300 hover:bg-secondary-warm-yellow/90  focus:outline-none  disabled:cursor-not-allowed border border-secondary-warm-yellow px-3.5 py-2.5 md:px-6 md:py-3.5 text-center"
+              disabled={inCompleteForm}
+              onClick={() => handlePlaceOrder()}
+            >
+              PLACE ORDER
+            </button>
+          )}
         </div>
       </section>
     );

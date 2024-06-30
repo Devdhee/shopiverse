@@ -1,8 +1,5 @@
 import { CartItemData } from '@/features/cart/cartSlice';
 
-
-
-
 export function saveCartItems(key: string, cartItems: CartItemData[]) {
   if (typeof window !== 'undefined') {
     localStorage.setItem(key, JSON.stringify(cartItems));

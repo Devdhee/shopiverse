@@ -10,12 +10,15 @@ import {
   getTotalCartQuantity,
   increaseItemQuantity,
   removeFromCart,
+  setCartItems,
 } from '@/features/cart/cartSlice';
 import { clearQuantity } from '@/features/cart/productSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import formatPrice from '@/utils/helpers';
+import { loadCartItems } from '@/utils/localStorage';
 import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
+import { useEffect } from 'react';
 import { toast } from 'sonner';
 
 function CartItemList() {
@@ -26,6 +29,11 @@ function CartItemList() {
 
   const salesTax = totalCartPrice * 0.11;
   const total = salesTax + totalCartPrice;
+
+  useEffect(() => {
+    const storedCartItems = loadCartItems('cartItems');
+    dispatch(setCartItems(storedCartItems));
+  }, [dispatch]);
 
   function handleRemoveFromCart(productId: number) {
     dispatch(removeFromCart(productId));
