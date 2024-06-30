@@ -8,24 +8,24 @@
 
 :root {
   /* Primary Colors */
-  --primary-navy-blue: 210 52 17;
-  --primary-bright-red: 356 78 57;
+  --primary-navy-blue: 210 52% 17%;
+  --primary-bright-red: 356 78% 57%;
 
   /* Secondary Colors */
-  --secondary-soft-gray: 191 68 97;
-  --secondary-dark-gray: 0 0 20;
-  --secondary-warm-yellow: 25 72 51;
+  --secondary-soft-gray: 191 68% 97%;
+  --secondary-dark-gray: 0 0% 20%;
+  --secondary-warm-yellow: 25 72% 5%;
 
   /* Accent Colors */
-  --accent-turquoise: 175 57 39;
-  --accent-coral: 356 100 72;
+  --accent-turquoise: 175 57% 39%;
+  --accent-coral: 356 100% 72%;
 
   /* Background Colors */
-  --background-white: 0 0 100;
-  --background-light-gray: 0 0 97;
+  --background-white: 0 0% 100%;
+  --background-light-gray: 0 0% 97%;
 
   /* Text Colors */
-  --text-dark-gray: 0 0 18;
-  --text-medium-gray: 0 0 33;
-  --text-light-gray: 0 0 67;
+  --text-dark-gray: 0 0% 18%;
+  --text-medium-gray: 0 0% 33%;
+  --text-light-gray: 0 0% 67%;
 }
