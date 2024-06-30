@@ -41,7 +41,7 @@ export default async function Home() {
 
   return (
     <main className="scroll-smooth">
-      <section className="mt-16 py-20 bg-secondary-soft-gray md:h-[80vh] lg:mt-0 lg:h-[80vh] lg:py-0">
+      <section className="mt-16 py-20 bg-red-500 md:h-[80vh] lg:mt-0 lg:h-[80vh] lg:py-0">
         <div className="container mx-auto flex flex-col gap-2 justify-center md:flex-row items-center h-full px-4 md:px-6 lg:px-8">
           <div className="space-y-3 text-center md:flex-1 md:text-left md:space-y-5">
             <h1 className="text-4xl font-bold text-primary-navy-blue md:text-5xl text-center max-w-96 md:max-w-[500px] md:text-left lg:text-7xl lg:max-w-[650px]">
