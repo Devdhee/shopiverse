@@ -1,5 +1,5 @@
 import ProductPageCTA from '@/components/ProductPageCTA';
-import Rating from '@/components/Rating';
+import StarRating from '@/components/Rating';
 import { getProduct } from '@/utils/apiCall';
 import formatPrice from '@/utils/helpers';
 import { Product } from '@/utils/interface';
@@ -16,7 +16,7 @@ async function page({ params }: Params) {
   const { id, image, description, title, price, category, rating } = product;
 
   return (
-    <main className="mt-16 py-12 px-4 bg-white lg:mt-0 md:px-6 lg:py-24 lg:px-20 lg:flex lg:gap-2 lg:h-fit md:py-16 container mx-auto">
+    <main className="mt-16 py-16 px-4 bg-white lg:mt-0 md:px-6 lg:py-24 lg:px-20 lg:flex lg:gap-2 lg:h-fit md:py-16 container mx-auto">
       <div className="relative h-[250px] flex-1 flex items-center justify-center md:h-[350px] my-auto lg:mr-8">
         <Image
           src={image}
@@ -29,7 +29,11 @@ async function page({ params }: Params) {
         <h1 className="font-semibold sm:text-lg text-text-dark-gray max-w-[500px] lg:text-xl">
           {title}
         </h1>
-        <Rating rating={4.3} />
+        <span className="flex gap-4">
+          <StarRating rating={rating.rate} />
+          <p className="text-sm">({rating.count} reviews)</p>
+        </span>
+
         <h2 className="font-bold text-text-dark-gray text-sm sm:text-base lg:text-lg">
           {formatPrice(price)}
         </h2>

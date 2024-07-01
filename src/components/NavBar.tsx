@@ -1,8 +1,13 @@
+'use client';
+
 import Link from 'next/link';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import Logo from './Logo';
 import ShoppingCartIcon from './ShoppingCart';
 import { auth } from '@/utils/auth';
 import SignOutButton from './SignOutButton';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
 const navList = [
   {
@@ -19,11 +24,31 @@ const navList = [
   },
 ];
 
-async function NavBar() {
-  const session = await auth();
+function NavBar() {
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+  const { data: session } = useSession();
+
+  useMotionValueEvent(scrollY, 'change', (latest: number) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 250) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   return (
-    <nav className="bg-primary-navy-blue hidden lg:block">
+    <motion.nav
+      initial="visible"
+      animate={hidden ? 'hidden' : 'visible'}
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: '-100%' },
+      }}
+      transition={{ duration: 0.35, ease: 'easeInOut' }}
+      className="bg-primary-navy-blue hidden lg:block sticky top-0 w-full z-50"
+    >
       <div className="mx-auto container px-8 py-4 flex justify-between items-center">
         <Logo />
         <ul className="flex gap-10">
@@ -51,7 +76,7 @@ async function NavBar() {
           {session?.user && <SignOutButton />}
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 

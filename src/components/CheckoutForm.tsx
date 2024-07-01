@@ -7,6 +7,8 @@ import Button from './Button';
 import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getUserData, setUserData } from '@/features/user/userSlice';
+import { useState } from 'react';
+import { Edit } from 'lucide-react';
 
 const checkoutSchema = z.object({
   fullName: z.string(),
@@ -22,6 +24,7 @@ type CheckoutSchemaType = z.infer<typeof checkoutSchema>;
 
 function CheckoutForm() {
   const dispatch = useAppDispatch();
+  const [filledForm, setFilledForm] = useState(false);
 
   const { data: session } = useSession();
   const fullName = session?.user?.name ?? '';
@@ -51,6 +54,7 @@ function CheckoutForm() {
   const onSubmit: SubmitHandler<CheckoutSchemaType> = (data) => {
     const newUserData = data;
     dispatch(setUserData(newUserData));
+    setFilledForm(true);
   };
 
   return (
@@ -113,6 +117,7 @@ function CheckoutForm() {
           type="tel"
           {...register('mobileNumber')}
           className="border border-primary-navy-blue rounded-md px-2 py-1 outline-none focus:outline-none hover:outline-none focus:border-secondary-warm-yellow focus:ring-1 focus:ring-secondary-warm-yellow focus:ring-offset-2 sm:px-4 sm:py-2"
+          disabled={filledForm}
         />
         {errors.mobileNumber && (
           <p className="text-sm text-red-500">{errors.mobileNumber?.message}</p>
@@ -131,13 +136,25 @@ function CheckoutForm() {
           type="text"
           {...register('address')}
           className="border border-primary-navy-blue rounded-md px-2 py-1 outline-none focus:outline-none hover:outline-none focus:border-secondary-warm-yellow focus:ring-1 focus:ring-secondary-warm-yellow focus:ring-offset-2 sm:px-4 sm:py-2"
+          disabled={filledForm}
         />
         {errors.address && (
           <p className="text-sm text-red-500">{errors.address?.message}</p>
         )}
       </div>
-
-      <Button variant="primary">Continue</Button>
+      {filledForm && (
+        <p className="">
+          Your shipping information has been updated. Click{' '}
+          <span
+            className="underline text-secondary-warm-yellow font-semibold cursor-pointer"
+            onClick={() => setFilledForm(false)}
+          >
+            here
+          </span>{' '}
+          to make changes.
+        </p>
+      )}
+      {!filledForm && <Button variant="primary">Continue</Button>}
     </form>
   );
 }

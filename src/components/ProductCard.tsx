@@ -12,14 +12,14 @@ function ProductCard({ product }: ProductProps) {
   const { title, rating, price, category, image } = product;
 
   return (
-    <div className="flex flex-col w-full max-w-[270px] lg:max-w-[320px] overflow-hidden">
-      <div className="relative px-3 py-5 bg-background-white mb-3 rounded-lg h-[340px] flex items-center">
+    <div className="flex flex-col w-full max-w-[270px] lg:max-w-[320px] overflow-hidden py-6">
+      <div className="relative px-3 py-5 bg-background-white mb-3 rounded-lg h-[340px] flex items-center group">
         <Image
           src={image}
           alt={title}
           width={150}
           height={100}
-          className="mx-auto"
+          className="mx-auto group-hover:scale-110 duration-500"
         />
         <div className="flex gap-1 absolute bg-background-light-gray bottom-3 px-2 rounded-xl py-1 text-text-dark-gray items-center">
           <span className="text-sm font-bold">{rating.rate}</span>
