@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Menu, UserRound, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import Logo from './Logo';

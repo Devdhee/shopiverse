@@ -6,6 +6,7 @@ import { getProducts } from '@/utils/apiCall';
 import { Product } from '@/utils/interface';
 import Link from 'next/link';
 import { auth } from '@/utils/auth';
+import HeroCTA from '@/components/HeroCTA';
 
 const categoryData = [
   {
@@ -35,7 +36,6 @@ export default async function Home() {
 
   const bestRated = products.filter((product) => product.rating.rate >= 4.7);
   const feauturedProducts = products.slice(0, 12);
-  const session = await auth();
 
   return (
     <main className="scroll-smooth">
@@ -49,9 +49,7 @@ export default async function Home() {
               Discover unbeatable deals and an incredible selection of
               top-quality items across all categories.
             </h3>
-            <Button variant="primary" href="#new-arrivals">
-              Start Exploring
-            </Button>
+            <HeroCTA />
           </div>
           <div className="px-2 md:flex-1">
             <Image src={heroImg} alt="product card for a pair of shoes" />
