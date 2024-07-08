@@ -80,10 +80,10 @@ function MobileNavBar() {
 
       <nav
         className={clsx(
-          'text-sm absolute transition-all duration-500 flex flex-col h-screen w-full md:w-[70vw] z-30 items-end  bg-background-white',
+          'text-sm absolute transition-all duration-500 flex flex-col h-screen w-full md:w-[70vw] z-30 items-end top-0 bg-background-white',
           {
-            'top-[-100%] opacity-0': !isOpen,
-            'top-0 opacity-100': isOpen,
+            'right-[-100%] opacity-0 hidden': !isOpen,
+            'right-0 opacity-100': isOpen,
           }
         )}
       >
