@@ -1,3 +1,8 @@
+'use client';
+
+import { motion, useAnimation } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { useInView } from 'framer-motion';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 import { Product } from '@/utils/interface';
@@ -9,10 +14,33 @@ type ProductProps = {
 };
 
 function ProductCard({ product }: ProductProps) {
+  const ref = useRef(null);
+  const controls = useAnimation();
+  const isInView = useInView(ref, { once: true, margin: '-70% 0px' });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start('visible');
+    }
+  }, [isInView, controls]);
+
   const { title, rating, price, category, image } = product;
 
   return (
-    <div className="flex flex-col w-full max-w-[270px] lg:max-w-[320px] overflow-hidden py-6">
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        hidden: { opacity: 0, y: 70 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5 },
+        },
+      }}
+      className="flex flex-col w-full max-w-[270px] lg:max-w-[320px] overflow-hidden py-6"
+    >
       <div className="relative px-3 py-5 bg-background-white mb-3 rounded-lg h-[340px] flex items-center group">
         <Image
           src={image}
@@ -38,7 +66,7 @@ function ProductCard({ product }: ProductProps) {
       </ul>
 
       <ProductCardCTA product={product} />
-    </div>
+    </motion.div>
   );
 }
 
