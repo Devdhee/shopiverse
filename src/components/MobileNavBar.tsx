@@ -7,7 +7,6 @@ import clsx from 'clsx';
 import Logo from './Logo';
 import ShoppingCartIcon from './ShoppingCart';
 import { useSession } from 'next-auth/react';
-
 import SignOutButton from './SignOutButton';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 
@@ -29,7 +28,6 @@ const navList = [
 function MobileNavBar() {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
-
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
 
@@ -55,7 +53,7 @@ function MobileNavBar() {
         hidden: { y: '-100%' },
       }}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
-      className="sticky bg-primary-navy-blue w-screen py-4 top-0 h-16 flex justify-between md:px-8 lg:hidden items-center w-full z-30"
+      className="sticky top-0 z-30 w-full bg-primary-navy-blue py-4 h-16 flex justify-between md:px-8 lg:hidden items-center"
     >
       <span className="px-2 text-left">
         <Logo />
@@ -66,13 +64,14 @@ function MobileNavBar() {
         </Link>
         {session?.user?.image && (
           <img
-            className="size-6 rounded-full border border-stone-600"
+            className="h-6 w-6 rounded-full border border-stone-600"
             src={session.user.image}
             alt={`Avatar image for ${session.user.name}`}
             referrerPolicy="no-referrer"
           />
         )}
         <Menu
+          aria-label="Open menu"
           style={{ color: 'hsl(var(--background-light-gray))' }}
           size={30}
           onClick={handleHamburgerMenu}
@@ -81,15 +80,16 @@ function MobileNavBar() {
 
       <nav
         className={clsx(
-          'text-sm absolute transition-all duration-500 flex flex-col h-screen w-screen md:w-[70vw] z-30 items-end top-0',
+          'text-sm absolute transition-all duration-500 flex flex-col h-screen w-full md:w-[70vw] z-30 items-end  bg-background-white',
           {
-            'right-[-100%] md:left-[-100%] opacity-0': !isOpen,
-            'right-0 md:left-0 opacity-100': isOpen,
+            'top-[-100%] opacity-0': !isOpen,
+            'top-0 opacity-100': isOpen,
           }
         )}
       >
         <header className="bg-primary-navy-blue px-4 h-16 py-4 flex justify-between w-full items-center md:px-8">
           <X
+            aria-label="Close menu"
             style={{ color: 'hsl(var(--background-light-gray))' }}
             size={32}
             onClick={handleHamburgerMenu}
@@ -98,14 +98,15 @@ function MobileNavBar() {
             <Logo />
           </div>
         </header>
-        <ul className="divide-y bg-background-white divide-text-medium-gray flex flex-col gap-1 w-full py-5 px-4 h-screen md:px-8">
+        <ul className="divide-y divide-text-medium-gray flex flex-col gap-1 w-full py-5 px-4 h-full md:px-8">
           {navList.map((navListItem) => (
             <Link
               href={navListItem.href}
               key={navListItem.title}
               onClick={handleHamburgerMenu}
+              passHref
             >
-              <li className=" space-y-5 text-primary-navy-blue text-lg py-4">
+              <li className="space-y-5 text-primary-navy-blue text-lg py-4">
                 {navListItem.title}
               </li>
             </Link>

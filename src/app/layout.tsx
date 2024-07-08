@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <SessionProvider>
-          <body className={`${inter.className} !scroll-smooth`}>
+          <body className={`${inter.className}`}>
             <Toaster position="bottom-center" richColors />
             <MobileNavBar />
             <NavBar />
