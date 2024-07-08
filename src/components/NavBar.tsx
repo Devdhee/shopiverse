@@ -4,10 +4,9 @@ import Link from 'next/link';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import Logo from './Logo';
 import ShoppingCartIcon from './ShoppingCart';
-import { auth } from '@/utils/auth';
 import SignOutButton from './SignOutButton';
 import { useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const navList = [
   {
@@ -25,9 +24,9 @@ const navList = [
 ];
 
 function NavBar() {
+  const { data: session } = useSession();
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
-  const { data: session } = useSession();
 
   useMotionValueEvent(scrollY, 'change', (latest: number) => {
     const previous = scrollY.getPrevious() ?? 0;

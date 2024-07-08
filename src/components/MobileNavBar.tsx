@@ -9,6 +9,7 @@ import ShoppingCartIcon from './ShoppingCart';
 import { useSession } from 'next-auth/react';
 
 import SignOutButton from './SignOutButton';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 
 const navList = [
   {
@@ -27,15 +28,35 @@ const navList = [
 
 function MobileNavBar() {
   const { data: session } = useSession();
-
   const [isOpen, setIsOpen] = useState(false);
+
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, 'change', (latest: number) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 250 && !isOpen) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   function handleHamburgerMenu() {
     setIsOpen(!isOpen);
   }
 
   return (
-    <div className="fixed bg-primary-navy-blue w-screen py-4 top-0 h-16 flex justify-between md:px-8 lg:hidden items-center z-30">
+    <motion.div
+      initial="visible"
+      animate={hidden ? 'hidden' : 'visible'}
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: '-100%' },
+      }}
+      transition={{ duration: 0.35, ease: 'easeInOut' }}
+      className="sticky bg-primary-navy-blue w-screen py-4 top-0 h-16 flex justify-between md:px-8 lg:hidden items-center w-full z-30"
+    >
       <span className="px-2 text-left">
         <Logo />
       </span>
@@ -96,7 +117,7 @@ function MobileNavBar() {
           )}
         </ul>
       </nav>
-    </div>
+    </motion.div>
   );
 }
 

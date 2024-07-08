@@ -16,7 +16,7 @@ type ProductProps = {
 function ProductCard({ product }: ProductProps) {
   const ref = useRef(null);
   const controls = useAnimation();
-  const isInView = useInView(ref, { once: true, margin: '-70% 0px' });
+  const isInView = useInView(ref, { once: true, margin: '-85% 0px' });
 
   useEffect(() => {
     if (isInView) {

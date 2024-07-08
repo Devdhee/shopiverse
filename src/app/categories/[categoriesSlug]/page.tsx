@@ -17,7 +17,7 @@ async function page({ params }: Params) {
   const title = string.replace(/%20/g, ' ').toUpperCase();
 
   return (
-    <main className="mt-16 py-5 px-4 bg-background-light-gray lg:mt-0 md:px-6 lg:py-16 lg:px-20">
+    <main className="py-5 px-4 bg-background-light-gray lg:mt-0 md:px-6 lg:py-16 lg:px-20">
       <div className="container mx-auto xl:px-16">
         <h1 className="mb-5 md:mb-8 lg:mb-10 font-semibold text-text-medium-gray lg:text-lg">
           {title}{' '}

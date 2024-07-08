@@ -1,4 +1,3 @@
-import Button from '@/components/Button';
 import Filter from '@/components/Filter';
 import ProductCard from '@/components/ProductCard';
 import { getProducts } from '@/utils/apiCall';
@@ -35,10 +34,8 @@ async function page({ searchParams }: SearchParams) {
     }
   }
 
-  console.log(filter);
-
   return (
-    <main className="mt-16 py-5 px-4 bg-background-light-gray lg:mt-0 md:px-6 lg:py-16 lg:px-20">
+    <main className="py-5 px-4 bg-background-light-gray lg:mt-0 md:px-6 lg:py-16 lg:px-20">
       <div className="container mx-auto xl:px-16">
         <div className="mb-5 lg:mt-8">
           <h2 className="text-sm font-semibold text-text-medium-gray mb-3 lg:text-base">
